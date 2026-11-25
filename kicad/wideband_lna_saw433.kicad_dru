@@ -1,0 +1,60 @@
+(version 1)
+# Fab minimums live in Board Setup > Constraints (JLCPCB standard + margin). These rules add intent.
+
+# --- power: never thinner than 0.3 mm, except a short neck-down into fine-pitch pads
+(rule "power_min_width"
+  (condition "A.NetClass == 'Power'")
+  (constraint track_width (min 0.3mm) (opt 0.5mm)))
+(rule "power_neckdown_at_fine_pads"
+  (condition "A.NetClass == 'Power' && A.intersectsCourtyard('U*')")
+  (constraint track_width (min 0.2mm)))
+
+# --- high voltage (> 30 V): 0.6 mm on outer layers (IPC-2221B B2, 51-100 V), 0.3 mm inner
+(rule "hv_clearance_outer"
+  (layer outer)
+  (condition "A.NetClass == 'HV' && B.NetClass != 'HV'")
+  (constraint clearance (min 0.6mm)))
+(rule "hv_clearance_inner"
+  (layer inner)
+  (condition "A.NetClass == 'HV' && B.NetClass != 'HV'")
+  (constraint clearance (min 0.3mm)))
+
+
+# --- mechanical: copper keeps away from NPTH (screw heads, bosses)
+(rule "npth_to_copper"
+  (condition "A.Pad_Type == 'NPTH, mechanical'")
+  (constraint hole_clearance (min 0.4mm)))
+
+# --- fine-pitch: allow 0.127 mm only inside courtyards of ICs (neck-down for QFN/BGA escape)
+(rule "fanout_width"
+  (condition "A.Type == 'Track' && A.intersectsCourtyard('U*')")
+  (constraint track_width (min 0.127mm)))
+
+# --- 4-layer stack S / GND / GND(+power islands) / S: In1 is the unbroken reference plane
+(rule "in1_gnd_plane_no_tracks"
+  (layer "In1.Cu")
+  (constraint disallow track))
+
+# Controlled nets stay on the outer layers over the In1 GND plane (In2 has power islands: no reference).
+(rule "hs_outer_only"
+  (layer inner)
+  (condition "A.NetClass == 'RF50'")
+  (constraint disallow track))
+
+(rule "rf50_geometry"
+  (layer outer)
+  (condition "A.NetClass == 'RF50'")
+  (constraint track_width (min 0.325mm) (opt 0.345mm) (max 0.365mm)))
+(rule "rf50_no_vias"
+  (condition "A.NetClass == 'RF50'")
+  (constraint via_count (max 0)))
+(rule "rf50_keep_signals_away"
+  (condition "A.NetClass == 'RF50' && B.NetClass != 'RF50' && B.NetName != 'GND'")
+  (constraint clearance (min 0.5mm)))
+
+# --- this board: no solder mask over RF lines (F.Mask openings drawn by finish.py), ENIG
+# At the SOT-363 switches the control pads sit 0.65 mm from the common RF pad: allow 0.2 mm to non-GND copper for RF
+# items that touch switch / LNA / choke / ESD courtyards. GND is excluded: the pour gap (= CPWG gap) stays 0.3 mm.
+(rule "rf50_at_ic_pins"
+  (condition "A.NetClass == 'RF50' && B.NetName != 'GND' && (A.intersectsCourtyard('U*') || A.intersectsCourtyard('L*') || A.intersectsCourtyard('D*'))")
+  (constraint clearance (min 0.2mm)))

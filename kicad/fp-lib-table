@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "lna433")(type "KiCad")(uri "${KIPRJMOD}/lna433.pretty")(options "")(descr "Project footprints"))
+)
