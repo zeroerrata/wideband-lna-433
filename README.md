@@ -17,7 +17,6 @@
 </p>
 
 <p align="center"><img src="images/renders/hero_iso_1200.webp" alt="render" width="820"></p>
-<p align="center"><sub>KiCad 10 render</sub></p>
 
 ## About
 
@@ -47,6 +46,23 @@ The RF lines are 50-ohm grounded coplanar waveguide without solder mask on a 4-l
 | Supply | USB-C 5 V or bias-tee 3.3-5 V on RF OUT |
 | Stackup | 4 layers, 1.6 mm, outer copper 1 oz; RF on the top layer over a solid ground plane |
 
+## Performance (simulated)
+
+RF cascade of the whole board between 50-ohm ports: the routed lines on the real stackup, the switches, coupling and bias parts, the SMA launches. The LNA is modelled from its data-sheet curves, the SAW filter as a behavioural band-pass with its data-sheet insertion loss; a prediction, not a measurement.
+
+| Path | Frequency | Gain | Noise figure | Input match (S11) |
+|---|---|---|---|---|
+| Wideband | 0.1 GHz | 22.3 dB | 1.25 dB | -10.0 dB |
+| Wideband | 433.92 MHz | 19.6 dB | 1.34 dB | -13.2 dB |
+| Wideband | 0.9 GHz | 16.6 dB | 1.51 dB | -13.9 dB |
+| Wideband | 2.2 GHz | 9.7 dB | 2.17 dB | -14.0 dB |
+| Wideband | 3 GHz | 7.0 dB | 2.72 dB | -13.3 dB |
+| 433 MHz SAW | 433.77-434.07 MHz | 15.3-16.1 dB | 4.9-5.4 dB | -20.3 dB |
+
+- Over part tolerances (Monte Carlo, 200 draws) every band check holds: wideband gain >= 6 dB, NF <= 3 dB, S11 <= -9 dB over 0.1-3 GHz; SAW path gain >= 14 dB, NF <= 5.5 dB in the passband.
+- Outside its passband the SAW path is 45-60 dB below its passband gain (simulated at 0.1, 0.9, 2.2 and 3 GHz).
+- The data-sheet model of the LNA has no phase information; its stability factor dips below 1 near the edges of the sweep (mu 0.79), so check the stability with a VNA on the first boards.
+
 ## Renders
 
 | Top | Bottom | Low |
@@ -75,6 +91,13 @@ The RF lines are 50-ohm grounded coplanar waveguide without solder mask on a 4-l
 1. Upload `fabrication/gerbers_drill.zip` to your PCB fab; the stackup and finish are in the specifications above.
 2. For assembly, use `fabrication/bom_jlcpcb.csv` and `fabrication/cpl_jlcpcb.csv` (JLCPCB format) or the KiCad-format `bom.csv` / `pos.csv`.
 3. Check part stock and the footprints against the current data sheets before you order.
+
+## Known issues
+
+Found by the design review of this release; boards built from these files carry them:
+
+- Reflow balance: six 0402 / 0603 parts on the ground pour (R1, R2, C2, C3, C5, C6) heat unevenly and may tombstone. Use a reflow profile with a 60-90 s soak at 150-180 C and inspect them; a later revision connects small pads through thermal reliefs.
+- Parts: the B3790 SAW filter is marked obsolete by one distributor (still in stock elsewhere at release), and the AS179-92LF switches had no authorised stock at release. Buy the SAW early; check the switches' stock or a second source before ordering.
 
 ## Notes
 
