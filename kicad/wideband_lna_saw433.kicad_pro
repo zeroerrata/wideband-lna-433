@@ -797,13 +797,14 @@
     ]
   ],
   "text_variables": {
-    "GIT_HASH": "9eb02d5",
+    "GIT_HASH": "41a6f13",
     "LICENSE": "CERN-OHL-P-2.0",
-    "REVISION": "2",
+    "RELEASE_DATE": "2026-11-27",
+    "RELEASE_TAG": "rev 3",
+    "REVISION": "3",
     "URL": "https://zeroerrata.eu",
-    "RELEASE_TAG": "rev 2",
-    "RELEASE_DATE": "2026-11-20",
-    "ISSUE_DATE": "2026-11-20"
+    "ISSUE_DATE": "2026-11-27",
+    "BUILD_ID": ""
   },
   "tuning_profiles": {
     "meta": {

@@ -1,0 +1,28 @@
+net,class,target,kind,side,x_mm,y_mm,size_mm
+/VBUS,power / ground,FB3.1,component pad,F,118.812,108.68,0.425
+/VBUS_F,power / ground,D3.1,component pad,F,122.263,108.68,0.6
+GND,power / ground,H1.1,through-hole pad,F,103.5,130.5,6.4
+VIN,power / ground,S1.2,component pad,F,143.5,103.58,0.7
+/CTL_BYP,signal,S1.1,component pad,F,146.5,103.58,0.7
+/CTL_FILT,signal,S1.3,component pad,F,142.0,103.58,0.7
+/RF_BYP1,signal,U1.3,component pad,F,113.438,117.35,0.35
+/RF_BYP2,signal,U2.1,component pad,F,131.562,117.35,0.35
+/RF_IN,signal,D1.2,component pad,F,107.6,118.0,0.28
+/RF_LNA_IN,signal,U3.3,component pad,F,137.775,117.35,0.45
+/RF_LNA_OUT,signal,U3.1,component pad,F,139.425,118.65,0.45
+/RF_OUT,signal,L5.2,component pad,F,145.4,118.0,0.28
+/RF_SAW1,signal,FL1.2,component pad,F,120.765,121.3,0.3
+/RF_SAW2,signal,FL1.5,component pad,F,123.835,122.57,0.3
+/RF_SAW_IN,signal,U1.1,component pad,F,113.438,118.65,0.35
+/RF_SAW_OUT,signal,U2.3,component pad,F,131.562,118.65,0.35
+/RF_SW1,signal,U1.5,component pad,F,111.762,118.0,0.35
+/RF_SW2,signal,U2.5,component pad,F,133.238,118.0,0.35
+/VBT_L,signal,FB2.2,component pad,F,145.4,115.887,0.425
+/VD_L,signal,FB1.2,component pad,F,141.8,115.887,0.425
+Net-(D4-A),signal,D4.2,component pad,F,137.375,109.4,0.425
+Net-(D5-A),signal,D5.2,component pad,F,151.125,109.4,0.425
+Net-(FL1-SHAPE),signal,FL1.7,component pad,F,123.835,120.03,0.3
+Net-(J3-CC1),signal,R2.1,component pad,F,116.2,109.475,0.425
+Net-(J3-CC2),signal,R1.1,component pad,F,113.8,109.475,0.425
+VBT,signal,D3.2,component pad,F,122.263,110.58,0.6
+VD,signal,C15.1,component pad,F,132.3,109.63,0.425

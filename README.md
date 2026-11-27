@@ -10,7 +10,7 @@
 <p align="center"><b>Low-noise amplifier for SDR receivers: SMA in, SMA out, 0.1-3 GHz, with a switchable 433.92 MHz SAW filter.</b></p>
 
 <p align="center">
-  <img alt="rev 2" src="https://img.shields.io/badge/release-rev%202-1f6feb">
+  <img alt="rev 3" src="https://img.shields.io/badge/release-rev%203-1f6feb">
   <img alt="KiCad 10" src="https://img.shields.io/badge/KiCad-10-314cb6">
   <img alt="CERN-OHL-P-2.0" src="https://img.shields.io/badge/licence-CERN--OHL--P--2.0-2ea44f">
   <img alt="4 layers" src="https://img.shields.io/badge/layers-4-555">
@@ -27,7 +27,7 @@ The RF lines are 50-ohm grounded coplanar waveguide without solder mask on a 4-l
 ## Features
 
 - Qorvo SPF5043Z LNA: NF 0.6-0.84 dB up to 2.2 GHz, gain about 23.5 dB at 0.1 GHz falling to about 10 dB at 3 GHz, OIP3 33-35 dBm
-- Switchable RF360 B3790 SAW filter, 433.92 MHz (about 0.4 MHz at -3 dB, 55-65 dB stop band), with its matching network
+- Switchable RF360 B3760 SAW filter, 433.92 MHz: 320 kHz pass band (about 0.7 MHz at -3 dB), 1.9 dB insertion loss, with its matching network
 - Two Skyworks AS179-92LF SPDT switches in series around the filter: about 50 dB leakage suppression, a LED for each mode
 - Powered by USB-C 5 V or by bias-tee over the RF OUT coax (3.3-5 V)
 - 50-ohm grounded coplanar waveguide (0.345 mm track, 0.3 mm gap, no solder mask), via fences, edge-launch SMA
@@ -40,7 +40,7 @@ The RF lines are 50-ohm grounded coplanar waveguide without solder mask on a 4-l
 | Board | 56.0 x 34.0 mm, 4 copper layers, 1.6 mm |
 | Finish | ENIG |
 | Parts | 46 |
-| Release | rev 2, 2026-11-20 |
+| Release | rev 3, 2026-11-27 |
 | Frequency | 0.1-3 GHz (wideband) or 433.92 MHz (SAW) |
 | RF connectors | 2 x edge-launch SMA, 50 ohm |
 | Supply | USB-C 5 V or bias-tee 3.3-5 V on RF OUT |
@@ -57,10 +57,10 @@ RF cascade of the whole board between 50-ohm ports: the routed lines on the real
 | Wideband | 0.9 GHz | 16.6 dB | 1.51 dB | -13.9 dB |
 | Wideband | 2.2 GHz | 9.7 dB | 2.17 dB | -14.0 dB |
 | Wideband | 3 GHz | 7.0 dB | 2.72 dB | -13.3 dB |
-| 433 MHz SAW | 433.77-434.07 MHz | 15.3-16.1 dB | 4.9-5.4 dB | -20.3 dB |
+| 433 MHz SAW | 433.77-434.07 MHz | 16.9-17.8 dB | 3.2-3.6 dB | -17.0 dB |
 
-- Over part tolerances (Monte Carlo, 200 draws) every band check holds: wideband gain >= 6 dB, NF <= 3 dB, S11 <= -9 dB over 0.1-3 GHz; SAW path gain >= 14 dB, NF <= 5.5 dB in the passband.
-- Outside its passband the SAW path is 45-60 dB below its passband gain (simulated at 0.1, 0.9, 2.2 and 3 GHz).
+- Over part tolerances (Monte Carlo, 200 draws) every band check holds: wideband gain >= 6 dB, NF <= 3 dB, S11 <= -9 dB over 0.1-3 GHz; SAW path gain >= 14 dB (16.9 dB), NF <= 5.5 dB (3.6 dB) in the passband.
+- Rejection of the SAW path relative to 433.92 MHz (data-sheet minimum of the filter): about 31 dB at 430 MHz, 21 dB at 437 MHz, 40-46 dB at 400 / 470 MHz, 51-55 dB from 868 MHz to 2.4 GHz, where the isolation of the two switches, not the filter, sets it.
 - The data-sheet model of the LNA has no phase information; its stability factor dips below 1 near the edges of the sweep (mu 0.79), so check the stability with a VNA on the first boards.
 
 ## Renders
@@ -77,7 +77,7 @@ RF cascade of the whole board between 50-ohm ports: the routed lines on the real
 | [`docs/`](docs) | [schematic.pdf](docs/schematic.pdf), [board_layers.pdf](docs/board_layers.pdf), [assembly_top.pdf](docs/assembly_top.pdf) |
 | [`fabrication/`](fabrication) | Gerber and drill files (zip), bill of materials, pick-and-place |
 | [`images/`](images) | renders and copper layer pictures |
-| [`analysis/`](analysis) | simulation and analysis results: retpath, sparam, thermal |
+| [`analysis/`](analysis) | simulation and analysis results: bringup, dfm, retpath, sparam, thermal |
 
 ## Verification
 
@@ -96,13 +96,14 @@ RF cascade of the whole board between 50-ohm ports: the routed lines on the real
 
 Found by the design review of this release; boards built from these files carry them:
 
-- Reflow balance: six 0402 / 0603 parts on the ground pour (R1, R2, C2, C3, C5, C6) heat unevenly and may tombstone. Use a reflow profile with a 60-90 s soak at 150-180 C and inspect them; a later revision connects small pads through thermal reliefs.
-- Parts: the B3790 SAW filter is marked obsolete by one distributor (still in stock elsewhere at release), and the AS179-92LF switches had no authorised stock at release. Buy the SAW early; check the switches' stock or a second source before ordering.
+- Reflow balance: from rev 3 the small ground pads connect through thermal reliefs; nine 0402 / 0603 parts remain at warning level in the reflow check, so use a profile with a 60-90 s soak at 150-180 C and inspect them.
+- Parts: the B3760 SAW filter is not stocked by JLCPCB / LCSC (solder it by hand or consign it), and the AS179-92LF switches had little authorised stock in 2026. Check both before ordering.
 
 ## Notes
 
-- The renders show the ZeroErrata house look (black solder mask); the rev 2 fabrication package as released specifies the fab's standard green mask. Choose the mask colour when you order.
+- The renders show the ZeroErrata house look; from rev 3 the fabrication package specifies it too: matte black solder mask, white silkscreen, ENIG.
 - The SAW filter has its pads under the body: solder it with hot air or a hot plate.
+- Rev 3 uses the B3760 SAW filter instead of the B3790 (obsolete at one distributor): 1.7 dB lower insertion loss and noise figure, a wider pass band (320 kHz instead of about 120 kHz) and less rejection within about 10 MHz of the carrier.
 
 ## Licence
 

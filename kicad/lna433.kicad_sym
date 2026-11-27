@@ -186,7 +186,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.rf360jv.com/products/b39431b3790z810"
+		(property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/972/B39431B3760Z810_DS.pdf"
 			(at 0 -15.24 0)
 			(hide yes)
 			(effects
@@ -195,7 +195,7 @@
 				)
 			)
 		)
-		(property "Description" "SAW RF filter 433.92 MHz, B3dB ~0.4 MHz, IL 3.6 dB, 50 ohm with 56 nH series L on IN/OUT and 56 nH from SHAPE to GND, QCC8B 3.8x3.8"
+		(property "Description" "SAW RF filter 433.92 MHz in QCC8B 3.8x3.8 (rev 3: B39431B3760Z810, B3dB 0.68 MHz, IL 1.9 dB, 50 ohm with 33 nH series L on IN / OUT, pin 7 to GND; the symbol keeps the B3790 pin names)"
 			(at 0 -17.78 0)
 			(hide yes)
 			(effects

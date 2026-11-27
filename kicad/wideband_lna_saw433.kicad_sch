@@ -6,10 +6,11 @@
 	(paper "A3")
 	(title_block
 		(title "Wideband LNA 0.1-3 GHz with switchable 433.92 MHz SAW filter")
-		(date "2026-11-02")
-		(rev "2")
-		(comment 1 "SPF5043Z LNA, B3790 SAW, 2 x AS179-92LF; USB-C or bias-tee power")
+		(date "${RELEASE_DATE}")
+		(rev "${REVISION}")
+		(comment 1 "SPF5043Z LNA, B3760 SAW, 2 x AS179-92LF; USB-C or bias-tee power")
 		(comment 2 "RF_* nets: 50-ohm CPWG 0.345 / 0.3 mm, no mask, L2 GND (JLC04161H-7628)")
+		(comment 3 "ZE-04  ${RELEASE_TAG} ${GIT_HASH}")
 	)
 	(lib_symbols
 		(symbol "Connector:Conn_Coaxial"
@@ -1200,7 +1201,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.rf360jv.com/products/b39431b3790z810"
+			(property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/972/B39431B3760Z810_DS.pdf"
 				(at 0 -15.24 0)
 				(hide yes)
 				(effects
@@ -1209,7 +1210,7 @@
 					)
 				)
 			)
-			(property "Description" "SAW RF filter 433.92 MHz, B3dB ~0.4 MHz, IL 3.6 dB, 50 ohm with 56 nH series L on IN/OUT and 56 nH from SHAPE to GND, QCC8B 3.8x3.8"
+			(property "Description" "SAW RF filter 433.92 MHz in QCC8B 3.8x3.8 (rev 3: B39431B3760Z810, B3dB 0.68 MHz, IL 1.9 dB, 50 ohm with 33 nH series L on IN / OUT, pin 7 to GND; the symbol keeps the B3790 pin names)"
 				(at 0 -17.78 0)
 				(hide yes)
 				(effects
@@ -1382,6 +1383,146 @@
 						)
 					)
 					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2307,146 +2448,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Device:R"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "R"
-				(at 2.032 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R"
-				(at 0 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at -1.778 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Resistor"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "R res resistor"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "R_0_1"
-				(rectangle
-					(start -1.016 -2.54)
-					(end 1.016 2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -5014,7 +5015,7 @@
 				)
 			)
 		)
-		(property "Value" "56n"
+		(property "Value" "33n"
 			(at 113.03 67.31 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5057,7 +5058,7 @@
 				)
 			)
 		)
-		(property "MPN" "LQW15AN56NG00D"
+		(property "MPN" "LQW15AN33NG00D"
 			(at 113.03 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -5079,7 +5080,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C167482"
+		(property "LCSC" "C113114"
 			(at 113.03 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -5157,7 +5158,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "B3790 433.92MHz"
+		(property "Value" "B3760 433.92MHz"
 			(at 138.43 55.88 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5179,7 +5180,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.rf360jv.com/products/b39431b3790z810"
+		(property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/972/B39431B3760Z810_DS.pdf"
 			(at 139.7 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -5190,7 +5191,7 @@
 				)
 			)
 		)
-		(property "Description" "SAW RF filter 433.92 MHz, B3dB ~0.4 MHz, IL 3.6 dB, 50 ohm with 56 nH series L on IN/OUT and 56 nH from SHAPE to GND, QCC8B 3.8x3.8"
+		(property "Description" "SAW RF filter 433.92 MHz in QCC8B 3.8x3.8 (rev 3: B39431B3760Z810, B3dB 0.68 MHz, IL 1.9 dB, 50 ohm with 33 nH series L on IN / OUT, pin 7 to GND; the symbol keeps the B3790 pin names)"
 			(at 139.7 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -5201,7 +5202,7 @@
 				)
 			)
 		)
-		(property "MPN" "B39431B3790Z810"
+		(property "MPN" "B39431B3760Z810"
 			(at 139.7 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -5213,17 +5214,6 @@
 			)
 		)
 		(property "Manufacturer" "RF360 (Qualcomm/TDK)"
-			(at 139.7 66.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C7218438"
 			(at 139.7 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -5278,7 +5268,7 @@
 		(uuid "1ecb0ed1-14d8-45b8-8107-d59ebcd7a531")
 	)
 	(symbol
-		(lib_id "Device:L")
+		(lib_id "Device:R")
 		(at 142.24 80.01 0)
 		(unit 1)
 		(body_style 1)
@@ -5288,7 +5278,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a11df5f9-1074-4e69-83e5-7fb737c73cf9")
-		(property "Reference" "L2"
+		(property "Reference" "R7"
 			(at 144.78 78.74 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5299,7 +5289,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "56n"
+		(property "Value" "0R"
 			(at 144.78 81.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5332,7 +5322,7 @@
 				)
 			)
 		)
-		(property "Description" "Inductor"
+		(property "Description" "Resistor"
 			(at 142.24 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -5343,7 +5333,7 @@
 				)
 			)
 		)
-		(property "MPN" "LQW15AN56NG00D"
+		(property "MPN" "0402WGF0000TCE"
 			(at 142.24 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -5354,7 +5344,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Murata"
+		(property "Manufacturer" "UNI-ROYAL"
 			(at 142.24 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -5365,7 +5355,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C167482"
+		(property "LCSC" "C17168"
 			(at 142.24 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -5385,7 +5375,7 @@
 		(instances
 			(project "wideband_lna_saw433"
 				(path "/1bcd1cdc-4a0a-4148-b871-a5c74e8118ee"
-					(reference "L2")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -5576,7 +5566,7 @@
 				)
 			)
 		)
-		(property "Value" "56n"
+		(property "Value" "33n"
 			(at 166.37 67.31 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5619,7 +5609,7 @@
 				)
 			)
 		)
-		(property "MPN" "LQW15AN56NG00D"
+		(property "MPN" "LQW15AN33NG00D"
 			(at 166.37 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -5641,7 +5631,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C167482"
+		(property "LCSC" "C113114"
 			(at 166.37 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -6547,7 +6537,7 @@
 		)
 		(uuid "0453293e-d8c3-4999-8648-9e95b097edee")
 	)
-	(text "B3790 matching (datasheet): 56 nH series IN / OUT,\n56 nH SHAPE to GND. Layout: own GND via per transducer\nGND pad, no top pour joining them."
+	(text "B3760 matching (data sheet Fig. 3): 33 nH series IN / OUT,\npin 7 to GND (R7 0R). Layout: own GND via per transducer\nGND pad, no top pour joining them."
 		(exclude_from_sim no)
 		(at 101.6 97.79 0)
 		(effects
@@ -10502,7 +10492,7 @@
 			)
 		)
 	)
-	(text "S1 to 1 = WIDEBAND: bypass, 0.1-3 GHz, yellow-green LED D5.\nS1 to 3 = FILTER: SAW 433.92 MHz in front of the LNA (~0.4 MHz, NF ~5 dB), red LED D4.\n100k pull-downs keep the unselected control line at 0 V."
+	(text "S1 to 1 = WIDEBAND: bypass, 0.1-3 GHz, yellow-green LED D5.\nS1 to 3 = FILTER: SAW 433.92 MHz in front of the LNA (~0.7 MHz, NF ~3.2 dB), red LED D4.\n100k pull-downs keep the unselected control line at 0 V."
 		(exclude_from_sim no)
 		(at 20.32 149.86 0)
 		(effects
